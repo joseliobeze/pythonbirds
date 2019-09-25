@@ -93,12 +93,26 @@ Exemplo:
     'Oeste'
 """
 
-class Carro:
-    def __init__(self, motor, direcao):
-        self.motor, self.direcao = motor, direcao
+NORTE = 'Norte'
+LESTE = 'Leste'
+SUL = 'Sul'
+OESTE = 'Oeste'
+class Direcao:
+    girar_direcao_a_direita_dict = {
+        NORTE: LESTE, LESTE: SUL, SUL: OESTE, OESTE: NORTE
+    }
+    girar_direcao_a_esquerda_dict = {
+        NORTE: OESTE, OESTE: SUL, SUL: LESTE, LESTE: NORTE
+    }
 
-    def carlcular_velocidade(self):
-        self.motor.velocidade
+    def __init__(self):
+        self.valor = NORTE
+
+    def girar_a_direita(self):
+        self.valor = self.girar_direcao_a_direita_dict[self.valor]
+
+    def girar_a_esquerda(self):
+        self.valor = self.girar_direcao_a_esquerda_dict[self.valor]
 
 
 class Motor:
