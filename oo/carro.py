@@ -93,10 +93,35 @@ Exemplo:
     'Oeste'
 """
 
+class Carro:
+    def __init__(self, direcao, motor):
+        self.direcao = direcao
+        self.motor = motor
+
+    def calcular_velocidade(self):
+        return self.motor.velocidade
+
+    def acelerar(self):
+        return self.motor.acelerar()
+
+    def frear(self):
+        return self.motor.frear()
+
+    def calcular_direcao(self):
+        return self.direcao.valor
+
+    def girar_a_direita(self):
+        return self.direcao.girar_a_direita()
+
+    def girar_a_esquerda(self):
+        return self.direcao.girar_a_esquerda()
+
+
 NORTE = 'Norte'
 LESTE = 'Leste'
 SUL = 'Sul'
 OESTE = 'Oeste'
+
 class Direcao:
     girar_direcao_a_direita_dict = {
         NORTE: LESTE, LESTE: SUL, SUL: OESTE, OESTE: NORTE
@@ -109,10 +134,14 @@ class Direcao:
         self.valor = NORTE
 
     def girar_a_direita(self):
-        self.valor = self.girar_direcao_a_direita_dict[self.valor]
+        self.valor = self.girar_direcao_a_direita_dict[
+            self.valor
+        ]
 
     def girar_a_esquerda(self):
-        self.valor = self.girar_direcao_a_esquerda_dict[self.valor]
+        self.valor = self.girar_direcao_a_esquerda_dict[
+            self.valor
+        ]
 
 
 class Motor:
