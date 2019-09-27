@@ -4,8 +4,9 @@ class Pessoa:
         self.idade = idade
         self.nome = nome
         self.filhos = list(filhos)
+
     def cumprimentar(self):
-        return f'Olá {id(self)}'
+        return f'Olá, meu nome é {self.nome}'
 
     @staticmethod
     def metodo_estatico():
@@ -15,9 +16,21 @@ class Pessoa:
     def nome_e_atributos_de_classe(cls):
         return f'{cls} - olhos {cls.olhos}'
 
+
+class Homem(Pessoa):
+    def cumprimentar(self):
+        cumprimentar_class_pai = super().cumprimentar()
+        return f'{cumprimentar_class_pai}. aperto de mão'
+
+
+class Mutante(Pessoa):
+    olhos = 3
+
+
 if __name__=='__main__':
-    renzo = Pessoa(nome='Renzo')
-    luciano = Pessoa(renzo, nome='Luciano')
+    renzo = Mutante(nome='Renzo')
+
+    luciano = Homem(renzo, nome='Luciano')
     print(Pessoa.cumprimentar(luciano))
     print(id((luciano)))
     print(renzo.cumprimentar())
@@ -31,10 +44,18 @@ if __name__=='__main__':
     del luciano.olhos
     print(luciano.__dict__)
     print(renzo.__dict__)
-    Pessoa.olhos = 3
+
     print(Pessoa.olhos)
     print(luciano.olhos)
     print(renzo.olhos)
     print(id(Pessoa.olhos), id(luciano.olhos), id(renzo.olhos))
     print(Pessoa.metodo_estatico(), luciano.metodo_estatico())
     print(Pessoa.nome_e_atributos_de_classe(), luciano.nome_e_atributos_de_classe())
+    anonima = Pessoa('Anonima')
+    print(isinstance(anonima, Pessoa))
+    print(isinstance(anonima, Homem))
+    print(isinstance(renzo, Homem))
+    print(isinstance(luciano, Homem))
+    print(renzo.olhos)
+    print(luciano.cumprimentar())
+    print(renzo.cumprimentar())
